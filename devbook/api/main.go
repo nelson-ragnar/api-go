@@ -1,16 +1,17 @@
 package main
 
-import {
+import (
+	"api/src/config"
 	"api/src/router"
 	"fmt"
 	"log"
-	"http"
-}
+	"net/http"
+)
 
-func main(){
+func main() {
+	config.Carregar()
 	fmt.Println("Rodando API!")
 	r := router.Gerar()
 
 	log.Fatal(http.ListenAndServe(":5000", r))
-
 }
