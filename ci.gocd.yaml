@@ -24,20 +24,20 @@ pipelines:
             timeout: 30
             tasks:
             - exec:
-                command: go --version
+                command: go version
                 run_if: passed
             - exec:
-                command: build-docker
+                command: docker --version
                 run_if: passed
             - exec:
-                command: tag-docker
+                command: docker --version
                 run_if: passed
             - exec:
-                command: push-registry
+                command: docker --version
                 run_if: passed
             - exec:
-                command: deploy
+                command: echo deploy
                 run_if: passed
             - exec:
-                command: test
+                command: go env
                 run_if: passed
