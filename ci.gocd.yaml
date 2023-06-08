@@ -21,7 +21,7 @@ pipelines:
           allow_only_on_success: false
         jobs:
           build-app:
-            timeout: 0
+            timeout: 30
             tasks:
             - exec:
                 command: go run devbook/api/main.go
