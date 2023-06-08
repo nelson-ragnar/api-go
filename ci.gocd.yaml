@@ -24,7 +24,7 @@ pipelines:
             timeout: 30
             tasks:
             - exec:
-                command: go run devbook/api/main.go
+                command: go --version
                 run_if: passed
             - exec:
                 command: build-docker
