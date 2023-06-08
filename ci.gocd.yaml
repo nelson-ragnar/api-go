@@ -10,7 +10,7 @@ pipelines:
         git: https://github.com/nelson-ragnar/api-go
         shallow_clone: false
         auto_update: true
-        branch: master
+        branch: main
     stages:
     - build_in_docker:
         fetch_materials: true
