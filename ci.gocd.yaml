@@ -1,0 +1,43 @@
+format_version: 10
+pipelines:
+  go-cd:
+    group: My-Pipelines
+    label_template: ${COUNT}
+    lock_behavior: none
+    display_order: -1
+    materials:
+      git-2d07c43:
+        git: https://github.com/nelson-ragnar/api-go
+        shallow_clone: false
+        auto_update: true
+        branch: master
+    stages:
+    - build_in_docker:
+        fetch_materials: true
+        keep_artifacts: false
+        clean_workspace: false
+        approval:
+          type: success
+          allow_only_on_success: false
+        jobs:
+          build-app:
+            timeout: 0
+            tasks:
+            - exec:
+                command: build
+                run_if: passed
+            - exec:
+                command: build-docker
+                run_if: passed
+            - exec:
+                command: tag-docker
+                run_if: passed
+            - exec:
+                command: push-registry
+                run_if: passed
+            - exec:
+                command: deploy
+                run_if: passed
+            - exec:
+                command: test
+                run_if: passed
