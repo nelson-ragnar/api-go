@@ -15,16 +15,18 @@ pipelines:
     - build_in_docker:
         fetch_materials: true
         keep_artifacts: false
-        clean_workspace: false
+        clean_workspace: true
         approval:
           type: success
           allow_only_on_success: false
         jobs:
           build-app:
+            resources:
+              - docker
             timeout: 0
             tasks:
             - exec:
-                command: build
+                command: go run /devbook/api main.go
                 run_if: passed
             - exec:
                 command: build-docker
