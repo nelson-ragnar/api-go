@@ -10,8 +10,8 @@ import (
 
 func main() {
 	config.Carregar()
-	fmt.Println("Rodando API!")
+	log.Println("Rodando API na porta:", config.Porta)
 	r := router.Gerar()
 
-	log.Fatal(http.ListenAndServe(":5000", r))
+	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%d", config.Porta), r))
 }
