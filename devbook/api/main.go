@@ -10,6 +10,7 @@ import (
 
 func main() {
 	config.Carregar()
+	fmt.Println(config.StringConexaoBanco)
 	log.Println("Rodando API na porta:", config.Porta)
 	r := router.Gerar()
 
